@@ -10,32 +10,92 @@
 
 <body>
     <header>
-        <img src="../IMAGENES/logo.png" alt="Logo CR MOTORS">
+        <div class="logo-login">
+            <img src="./IMAGENES/LOGO/LOGO.png" alt="Logo CR MOTORS">
+            <a class="botonlogin" href="./login.html">INICIAR SESION</a>
+        </div>
         <nav>
-            <a href="#">INICIO</a>
-            <a href="#">COCHES EN VENTA</a>
-            <a href="#">COCHES VENDIDOS</a>
-            <a href="#">CONTACTO</a>
+            <a href="./index.html">INICIO</a>
+            <a href="./catalogo.html">CATALOGO</a>
+            <a href="./nuestraempresa.html">NUESTRA EMPRESA</a>
+            <a href="./contacto.html">CONTACTO</a>
         </nav>
     </header>
     <main>
+
         <section>
             <div>
-                <h1>CR MOTORS</h1>
-            </div>
-            <h4>TU CONCESIONARIO DE CONFIANZA</h4>
-        </section>
-        <section>
-            <div id="listacoches"></div>
-        </section>
-        <section>
-            <div>
-                <p>¿POR QUÉ ELEGIRNOS?</p>
+                <h2>¿POR QUÉ ELEGIRNOS?</h2>
                 <p>En CR MOTORS nos esforzamos por ofrecer la mejor experiencia a nuestros clientes. Contamos con un
                     equipo de profesionales altamente cualificados y una amplia selección de vehículos de alta calidad.
                 </p>
                 <p>Además, ofrecemos servicios adicionales como financiación, seguros y garantías para que puedas
                     disfrutar de tu coche con total tranquilidad.</p>
+                <img src="./IMAGENES/Vendedor concesionario.png" alt="vendedor">
+                <div class="flex-puntos">
+                    <div>
+                        <h5>SERIEDAD</h5>
+                        <p>En CR MOTORS nos esforzamos por ofrecer la mejor experiencia a nuestros clientes. Contamos con un
+                            equipo de profesionales altamente cualificados y una amplia selección de vehículos de alta calidad.
+                        </p>
+                    </div>
+                    <div>
+                        <h5>COMPROMISO</h5>
+                        <p>En CR MOTORS nos esforzamos por ofrecer la mejor experiencia a nuestros clientes. Contamos con un
+                            equipo de profesionales altamente cualificados y una amplia selección de vehículos de alta calidad.
+                        </p>
+                    </div>
+                    <div>
+                        <h5>ATENCION</h5>
+                        <p>En CR MOTORS te atenderemos como nunca lo han hecho contigo de una manera profesional, seria, eficaz y con mucho cariño.
+                        </p>
+                    </div>
+                    <div>
+                        <h5>CALIDAD</h5>
+                        <p>En CR MOTORS cumplimos con todos los estandares de calidad, nuestros vehiculos pasan por un riguroso control de calidad para garantizar que nuestros clientes reciban vehiculos en optimas condiciones.
+                        </p>
+                    </div>
+                    <div>
+                        <h5>GARANTIA</h5>
+                        <p>En CR MOTORS la garantía viaja contigo, nuestra garantía de kilometros es ilimitada.
+                        </p>
+                    </div>
+                    <div>
+                        <h5>FINANCIACION</h5>
+                        <p>En CR MOTORS tenemos tu mejor financiación, pregunta a nuestros comerciales y ellos te informaran de todas las opciones disponibles.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <h2>¿QUE NOS DIFERENCIA DEL RESTO?</h2>
+                <p>Lo que realmente nos distingue en CR MOTORS es nuestro riguroso proceso de selección y revisión. Cada
+                    vehículo que entra en nuestro inventario es sometido a una inspección técnica exhaustiva de más de
+                    100
+                    puntos críticos, asegurando que solo los coches en estado óptimo lleguen a tus manos. No nos
+                    limitamos
+                    a vender coches; nos comprometemos a entregar seguridad y fiabilidad absoluta en cada kilómetro que
+                    recorras.
+                </p>
+                <p>Además, entendemos que la transparencia es el motor de la confianza. Por eso, ofrecemos un
+                    asesoramiento honesto y personalizado, sin letras pequeñas ni sorpresas inesperadas. Con nuestras
+                    opciones de financiación a medida, gestión de seguros y una garantía total de 12 meses, nuestra meta
+                    es que tu única preocupación al salir de nuestro concesionario sea elegir tu próximo destino en la
+                    carretera.</p>
+                <img src="./IMAGENES/Concesionario.jpg" alt="concesionario">
+            </div>
+            <div>
+                <h2>TENEMOS UNA AMPLIA RED DE TALLERES</h2>
+                <p>En CR MOTORS sabemos que tu tranquilidad no termina al salir del concesionario. Por eso, contamos con una extensa red de talleres concertados distribuida estratégicamente para ofrecerte cobertura allá donde estés. No importa el punto de la península en el que te encuentres; siempre tendrás cerca a un equipo de expertos dispuesto a atender cualquier necesidad de mantenimiento o reparación con la máxima rapidez y eficacia, garantizando que nunca te quedes tirado.
+                </p>
+                <p>Nuestra red de servicios técnicos destaca por el uso de tecnología de diagnóstico de última generación y profesionales altamente certificados. Cada intervención se realiza bajo los más estrictos estándares de calidad, utilizando recambios de primera categoría para asegurar el rendimiento óptimo de tu vehículo. Con CR MOTORS, el respaldo técnico profesional te acompaña en cada kilómetro, dándote la confianza de saber que tu coche está en las mejores manos expertas.</p>
+                <img src="./IMAGENES/Taller concesionario.jpg" alt="taller">
+            </div>
+            <div class="flex-alerta">
+                <div>
+                    <h4>¿SIGUES BUSCANDO TU VEHÍCULO?</h4>
+                    <p>Llámanos y habla con tu equipo de asesoramiento, ellos mejor que nadie saben como encontrar el coche perfecto para ti.</p>
+                </div>
             </div>
         </section>
     </main>
@@ -43,23 +103,23 @@
         <div class="columnas-pie">
             <div class="seccion-pie">
                 <a href="index.html">INICIO</a>
-                <a href="#">COCHES EN VENTA</a>
-                <a href="#">COCHES VENDIDOS</a>
-                <a href="#">CONTACTO</a>
+                <a href="catalogo.html">CATALOGO</a>
+                <a href="nuestraempresa.html">NUESTRA EMPRESA</a>
+                <a href="contacto.html">CONTACTO</a>
             </div>
             <div class="seccion-pie">
                 <p>¿Dónde estamos?</p>
-                <p>Calle Nueva 2</p>
-                <p>Alcorcón (Madrid)</p>
+                <a href="https://maps.app.goo.gl/tCWCrfMFd2K7p2tT9">Calle Nueva 2, Alcorcón (Madrid)</a>
                 <p>686 19 66 99</p>
                 <p>cristianbo1990@gmail.com</p>
             </div>
             <div class="seccion-pie">
                 <p>Síguenos en nuestras redes sociales</p>
                 <div class="iconos-sociales">
-                    <a href="#"><img src="../IMAGENES/facebook.png" alt="Facebook"></a>
-                    <a href="#"><img src="../IMAGENES/instagram.png" alt="Instagram"></a>
-                    <a href="#"><img src="../IMAGENES/twitter.png" alt="Twitter"></a>
+                    <a href="#"><img src="./IMAGENES/ICONOS RRSS/facebook.png" alt="Facebook"></a>
+                    <a href="#"><img src="./IMAGENES/ICONOS RRSS/twitter.png" alt="Twitter"></a>
+                    <a href="#"><img src="./IMAGENES/ICONOS RRSS/whatsapp.png" alt="Whatsapp"></a>
+                    <a href="#"><img src="./IMAGENES/ICONOS RRSS/youtube.png" alt="Youtube"></a>
                 </div>
             </div>
         </div>
