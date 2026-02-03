@@ -89,3 +89,25 @@ function renderizarCatalogo() {
 }
 
 document.addEventListener('DOMContentLoaded', renderizarCatalogo);
+ //BOTON ENVIAR FORMULARIO
+document.addEventListener('DOMContentLoaded', function() {
+    const formularioContacto = document.querySelector('.form-bonito');
+
+    if (formularioContacto) {
+        formularioContacto.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            Swal.fire({
+                title: '¡Mensaje Enviado!',
+                text: 'Nos pondremos en contacto contigo lo antes posible.',
+                icon: 'success',
+                confirmButtonColor: '#c40000',
+                confirmButtonText: 'GRACIAS POR TU CONTACTO'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    formularioContacto.reset(); 
+                }
+            });
+        });
+    }
+});

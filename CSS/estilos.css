@@ -212,6 +212,38 @@ footer {
     text-align: center;
     margin: 20px;
 }
+/*FORMULARIO*/
+.form-bonito {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; 
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px; 
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); 
+    max-width: 500px; 
+    margin: 0 auto; 
+}
+
+.form-bonito input[type="text"] {
+    padding: 12px 15px;
+    border: 2px solid #eee;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    outline: none;
+}
+
+.form-bonito input[type="text"]:focus {
+    border-color: var(--rojo-corporativo);
+    box-shadow: 0 0 8px rgba(196, 0, 0, 0.2);
+}
+.form-bonito .boton-contacto {
+    width: 100%;
+    margin-top: 10px;
+    cursor: pointer;
+    border: none;
+}
 
 /*CLASES TARJETAS DE COCHES*/
 .tarjeta-coche{
