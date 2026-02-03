@@ -203,6 +203,16 @@ footer {
     margin-bottom: 60px;
     grid-template-columns: repeat(2,1fr);
 }
+/*CLASES ESPECIFICAS WEB DE CONTACTO*/
+.centrado{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 20px;
+}
+
 /*CLASES TARJETAS DE COCHES*/
 .tarjeta-coche{
     background: #fff;
