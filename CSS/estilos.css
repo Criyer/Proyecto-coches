@@ -4,11 +4,17 @@
     --negro-oscuro: #1a1a1a;
     --gris-fondo: #f8f9fa;
 }
-body{
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
     letter-spacing: 1px;
     font-family: 'Comic Sans MS', cursive, sans-serif;
     font-style: italic;
 }
+
 header {
     display: flex;
     flex-direction: column;
@@ -197,14 +203,16 @@ footer {
     font-size: 1.5rem;
     color: var(--negro-oscuro);
 }
+
 .cuadricula-coches {
     display: grid;
     gap: 25px;
     margin-bottom: 60px;
-    grid-template-columns: repeat(2,1fr);
+    grid-template-columns: repeat(2, 1fr);
 }
+
 /*CLASES ESPECIFICAS WEB DE CONTACTO*/
-.centrado{
+.centrado {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -212,17 +220,18 @@ footer {
     text-align: center;
     margin: 20px;
 }
+
 /*FORMULARIO*/
 .form-bonito {
     display: flex;
     flex-direction: column;
-    gap: 15px; 
+    gap: 15px;
     background-color: #ffffff;
     padding: 30px;
-    border-radius: 12px; 
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); 
-    max-width: 500px; 
-    margin: 0 auto; 
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    margin: 0 auto;
 }
 
 .form-bonito input[type="text"] {
@@ -238,6 +247,7 @@ footer {
     border-color: var(--rojo-corporativo);
     box-shadow: 0 0 8px rgba(196, 0, 0, 0.2);
 }
+
 .form-bonito .boton-contacto {
     width: 100%;
     margin-top: 10px;
@@ -246,7 +256,7 @@ footer {
 }
 
 /*CLASES TARJETAS DE COCHES*/
-.tarjeta-coche{
+.tarjeta-coche {
     background: #fff;
     border-radius: 8px;
     overflow: hidden;
@@ -255,36 +265,43 @@ footer {
     display: flex;
     flex-direction: column;
 }
-.contenedor-imagen{
+
+.contenedor-imagen {
     position: relative;
     height: 180px;
     overflow: hidden;
 }
-.imagen-vehiculo{
+
+.imagen-vehiculo {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
-.info-coche{
+
+.info-coche {
     padding: 20px;
     flex-grow: 1;
     display: flex;
-    flex-direction: column;;
+    flex-direction: column;
+    ;
 }
-.nombre-modelo{
+
+.nombre-modelo {
     margin: 0 0 10px 0;
     font-size: 1.1rem;
     color: var(--negro-oscuro);
     font-weight: 700;
 }
-.precio-vehiculo{
+
+.precio-vehiculo {
     font-size: 1.3rem;
     color: var(--rojo-corporativo);
     font-weight: 800;
     margin-bottom: 15px;
 }
-.datos-tecnicos{
-    display:flex;
+
+.datos-tecnicos {
+    display: flex;
     justify-content: space-between;
     font-size: 0.75rem;
     color: #666;
@@ -294,7 +311,8 @@ footer {
     margin-bottom: 20px;
     font-weight: 600;
 }
-.boton-contacto{
+
+.boton-contacto {
     display: block;
     text-align: center;
     background: var(--negro-oscuro);
@@ -307,14 +325,16 @@ footer {
     margin-top: auto;
     transition: background 0.3s;
 }
-.boton-contacto:hover{
+
+.boton-contacto:hover {
     background: var(--rojo-corporativo);
 }
-.etiqueta-vendido{
+
+.etiqueta-vendido {
     position: absolute;
     top: 10px;
     left: 10px;
-    background: rgba(196, 0, 0, 0,9);
+    background: rgba(196, 0, 0, 0, 9);
     color: white;
     padding: 5px 12px;
     border-radius: 3px;
@@ -323,9 +343,93 @@ footer {
     font-size: 0.75rem;
     z-index: 5;
 }
-.tarjeta-vendida .boton-contacto{
+
+.tarjeta-vendida .boton-contacto {
     background: #555
 }
+
+/*ESTILOS LOGIN.HTML*/
+.contenedor-login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
+    margin: auto;
+}
+
+.logo-login {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.logo-login h1 {
+    color: var(--negro-oscuro);
+    margin: 0;
+    font-size: 1.8rem;
+}
+
+.logo-login h1 span {
+    color: var(--rojo-corporativo);
+}
+
+h2 {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+    color: #333;
+}
+
+.grupo-entrada {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    ;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 1rem;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--rojo-corporativo);
+}
+
+.btn-entrar:hover {
+    background: var(--rojo-corporativo);
+}
+
+.pie-login {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.9rem;
+}
+
+.pie-login a {
+    color: var(--rojo-corporativo);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+
 /*MEDIA QUERIES*/
 
 @media (max-width: 1200px) {
@@ -337,8 +441,9 @@ footer {
         gap: 20px;
         margin-bottom: 20px;
     }
+
     .cuadricula-coches {
-        grid-template-columns: repeat(4,1fr);
+        grid-template-columns: repeat(4, 1fr);
     }
 }
 
@@ -351,8 +456,9 @@ footer {
         gap: 20px;
         margin-bottom: 20px;
     }
+
     .cuadricula-coches {
-        grid-template-columns: repeat(2,1fr);
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
