@@ -20,7 +20,25 @@
         </nav>
     </header>
     <main>
-        
+      <div class="contenedor-login">
+        <div class="logo-login"></div>
+        <h1>CR <span>MOTORS</span></h1>
+      </div>
+      <h2>Acceso Clientes</h2>
+      <form action="procesar_login.php" method="POST">
+        <div class="grupo-entrada">
+            <label>Correo Electrónico</label>
+            <input type="email" name="email" required>
+        </div>
+        <div class="grupo-entrada">
+            <label>Contraseña</label>
+            <input type="password" name="password" required>
+        </div>
+        <button type="submit">Iniciar Sesión</button>
+      </form>
+      <div class="pie-login">
+        <p>¿No tienes cuenta? <a href="./registro.html">Regístrate</a></p>
+      </div>
     </main>
     <footer>
         <div class="columnas-pie">
