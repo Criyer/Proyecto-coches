@@ -71,30 +71,30 @@ function renderizarCatalogo() {
     const contenedorVenta = document.getElementById('contenedor-venta');
     const contenedorVendidos = document.getElementById('contenedor-vendidos');
 
-    if (contenedorVenta) 
+    if (contenedorVenta)
         contenedorVenta.innerHTML = "";
-    if (contenedorVendidos) 
+    if (contenedorVendidos)
         contenedorVendidos.innerHTML = "";
 
     inventarioVehiculos.forEach(coche => {
         const htmlTarjeta = crearPlantillaTarjeta(coche);
         if (coche.vendido) {
-            if (contenedorVendidos) 
+            if (contenedorVendidos)
                 contenedorVendidos.insertAdjacentHTML('beforeend', htmlTarjeta);
         } else {
-            if (contenedorVenta) 
+            if (contenedorVenta)
                 contenedorVenta.insertAdjacentHTML('beforeend', htmlTarjeta);
         }
     });
 }
 
 document.addEventListener('DOMContentLoaded', renderizarCatalogo);
- //BOTON ENVIAR FORMULARIO
-document.addEventListener('DOMContentLoaded', function() {
+//BOTON ENVIAR FORMULARIO MENSAJE
+document.addEventListener('DOMContentLoaded', function () {
     const formularioContacto = document.querySelector('.form-bonito');
 
     if (formularioContacto) {
-        formularioContacto.addEventListener('submit', function(event) {
+        formularioContacto.addEventListener('submit', function (event) {
             event.preventDefault();
 
             Swal.fire({
@@ -105,7 +105,45 @@ document.addEventListener('DOMContentLoaded', function() {
                 confirmButtonText: 'GRACIAS POR TU CONTACTO'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    formularioContacto.reset(); 
+                    formularioContacto.reset();
+                }
+            });
+        });
+    }
+
+//BOTÓN LOGIN MENSAJE
+    const formularioLogin = document.querySelector('.contenedor-login form');
+    if (formularioLogin) {
+        formularioLogin.addEventListener('submit', function (event) {
+            event.preventDefault();
+            Swal.fire({
+                title: '¡Bienvenido!',
+                text: 'Iniciando sesión en tu cuenta...',
+                icon: 'success',
+                confirmButtonColor: '#c40000',
+                confirmButtonText: 'ACCEDER'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    formularioLogin.submit();
+                }
+            });
+        });
+    }
+
+//BOTÓN REGISTRO MENSAJE
+    const formularioRegistro = document.querySelector('.contenedor-registro form');
+    if (formularioRegistro) {
+        formularioRegistro.addEventListener('submit', function (event) {
+            event.preventDefault();
+            Swal.fire({
+                title: '¡Cuenta Creada!',
+                text: 'Te has registrado correctamente en CR MOTORS.',
+                icon: 'success',
+                confirmButtonColor: '#c40000',
+                confirmButtonText: 'CONTINUAR'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    formularioRegistro.submit();
                 }
             });
         });
