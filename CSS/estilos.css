@@ -363,7 +363,11 @@ footer {
     box-sizing: border-box;
     margin: auto;
 }
-
+.botonlogin{
+display: flex;
+justify-content: center;
+align-items: center;
+}
 .logo-login {
     text-align: center;
     margin-bottom: 30px;
@@ -424,6 +428,87 @@ input:focus {
 }
 
 .pie-login a {
+    color: var(--rojo-corporativo);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/*ESTILOS REGISTRO.HTML*/
+.contenedor-registro {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
+    margin: auto;
+}
+
+.logo-registro {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.logo-registro h1 {
+    color: var(--negro-oscuro);
+    margin: 0;
+    font-size: 1.8rem;
+}
+
+.logo-registro h1 span {
+    color: var(--rojo-corporativo);
+}
+
+h2 {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+    color: #333;
+}
+
+.grupo-entrada {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    ;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 1rem;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--rojo-corporativo);
+}
+
+.btn-entrar:hover {
+    background: var(--rojo-corporativo);
+}
+
+.pie-registro {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.9rem;
+}
+
+.pie-registro a {
     color: var(--rojo-corporativo);
     text-decoration: none;
     font-weight: bold;
