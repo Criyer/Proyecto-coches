@@ -21,10 +21,6 @@ CREATE TABLE IF NOT EXISTS coches (
 );
 
 INSERT INTO usuarios (nombre, email, password, rol) 
-VALUES ('Administrador', 'admin@crmotors.com', '$2y$10$7rW6pS9.F5b5uS.tN.Kj9uL4p5p6z1w2x3y4z5a6b7c8d9e0f1g2h', 1);
+VALUES ('Administrador', 'admin@crmotors.com', '$2y$10$NzUjJ2qsUvn9ThT3eFhheeb3Pz.Ho72V6Qsb/f2QXY22YfrCqW4E6', 1);
 
-INSERT INTO coches (modelo, precio, anio, kms, motor, imagen, estado) 
-VALUES 
-('BMW Serie 3 M-Sport', 32900.00, 2021, '45.000 KM', 'DIÉSEL', 'https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&q=80&w=600', 0),
-('Audi A4 Avant', 27500.00, 2020, '60.000 KM', 'HÍBRIDO', 'https://images.unsplash.com/photo-1603584173870-7f3ca9128146?auto=format&fit=crop&q=80&w=600', 0),
-('Mercedes Clase C', 24000.00, 2019, '85.000 KM', 'GASOLINA', 'https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&q=80&w=600', 1);
+//CONTRASEÑA DEL ADMIN: admin123

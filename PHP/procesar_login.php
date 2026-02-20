@@ -5,21 +5,33 @@ require 'db.php';
 session_start();
 
 function swal_redirect($icon, $title, $text, $btnText, $url) {
-    echo "<!DOCTYPE html><html><head><meta charset='UTF-8'></head><body>
+    echo "<!DOCTYPE html><html><head><meta charset='UTF-8'><style>
+        * { box-sizing:border-box; }
+        body { margin:0; background:#fff; }
+    </style></head><body>
     <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
     <script>
         Swal.fire({
             title: '" . addslashes($title) . "',
             text: '" . addslashes($text) . "',
             icon: '" . $icon . "',
+            background: '#ffffff',
             confirmButtonColor: '#c40000',
             confirmButtonText: '" . addslashes($btnText) . "',
-            allowOutsideClick: false
+            allowOutsideClick: false,
+            didOpen: () => {
+                document.querySelectorAll(
+                    '.swal2-success-circular-line-left,' +
+                    '.swal2-success-circular-line-right,' +
+                    '.swal2-success-fix'
+                ).forEach(el => el.style.backgroundColor = '#ffffff');
+            }
         }).then(() => {
             window.location.href = '" . $url . "';
         });
     </script>
     </body></html>";
+
     exit();
 }
 
