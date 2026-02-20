@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-//BOTÓN LOGIN MENSAJE
+    //BOTÓN LOGIN MENSAJE
     const formularioLogin = document.querySelector('.contenedor-login form');
     if (formularioLogin) {
         formularioLogin.addEventListener('submit', function (event) {
@@ -130,7 +130,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-//BOTÓN REGISTRO MENSAJE
+    //BOTÓN REGISTRO MENSAJE
     const formularioRegistro = document.querySelector('.contenedor-registro form');
     if (formularioRegistro) {
         formularioRegistro.addEventListener('submit', function (event) {
