@@ -1,11 +1,14 @@
 <?php
+// Pillamos la conexión a la base de datos
 require 'db.php';
 
+// Esto es para que las redirecciones funcionen bien independientemente de dónde estemos
 $protocol  = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
 $host      = $_SERVER['HTTP_HOST'];
 $base_path = dirname(dirname($_SERVER['SCRIPT_NAME']));
 $base_url  = $protocol . '://' . $host . rtrim($base_path, '/');
 
+// La misma función de siempre para las alertas de SweetAlert
 function swal_redirect($icon, $title, $text, $btnText, $url) {
     echo "<!DOCTYPE html><html><head><meta charset='UTF-8'><style>
         * { box-sizing:border-box; }
@@ -22,6 +25,7 @@ function swal_redirect($icon, $title, $text, $btnText, $url) {
             confirmButtonText: '" . addslashes($btnText) . "',
             allowOutsideClick: false,
             didOpen: () => {
+                // Dejamos los iconos de SweetAlert con fondo blanco
                 document.querySelectorAll(
                     '.swal2-success-circular-line-left,' +
                     '.swal2-success-circular-line-right,' +
@@ -36,13 +40,18 @@ function swal_redirect($icon, $title, $text, $btnText, $url) {
     exit();
 }
 
+// Si nos mandan datos por POST, los guardamos
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nombre   = $_POST['nombre'];
     $email    = $_POST['email'];
     $password = $_POST['password'];
 
+    // Encriptamos la contraseña para que no se vea en la base de datos
     $pass_encriptada = password_hash($password, PASSWORD_BCRYPT);
+    // Por defecto el rol es 0 (cliente normal)
     $rol = isset($_POST['rol']) ? intval($_POST['rol']) : 0;
+    
+    // Insertamos el nuevo usuario en la tabla
     $sql  = "INSERT INTO usuarios (nombre, email, password, rol) VALUES (?, ?, ?, ?)";
     $stmt = mysqli_prepare($conexion, $sql);
 
@@ -50,6 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         mysqli_stmt_bind_param($stmt, "sssi", $nombre, $email, $pass_encriptada, $rol);
 
         if (mysqli_stmt_execute($stmt)) {
+            // Si todo ha ido bien, le avisamos y al login
             swal_redirect(
                 'success',
                 '¡Registro completado!',
@@ -58,6 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $base_url . '/HTML/login.html'
             );
         } else {
+            // Si falla (probablemente porque el email ya existe)
             swal_redirect(
                 'error',
                 'Error en el registro',
@@ -69,6 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         mysqli_stmt_close($stmt);
     } else {
+        // Por si revienta el servidor
         swal_redirect(
             'error',
             'Error del servidor',
@@ -78,9 +90,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         );
     }
 
+    // Cerramos todo antes de irnos
     mysqli_close($conexion);
 
 } else {
+    // Si entran por la cara, los mandamos al formulario de registro
     header("Location: " . dirname(dirname($_SERVER['SCRIPT_NAME'])) . '/HTML/registro.html');
     exit();
 }

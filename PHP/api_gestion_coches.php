@@ -1,9 +1,10 @@
 <?php
 
+// Conectamos a la base de datos y arrancamos la sesión
 require 'db.php';
 session_start();
 
-// Peticion GET: devuelve todos los coches en formato JSON
+// Si nos piden datos con GET, devolvemos todos los coches en un JSON para el catálogo
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $resultado = mysqli_query($conexion, "SELECT * FROM coches ORDER BY id DESC");
     $coches = [];
@@ -16,18 +17,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     exit();
 }
 
-// Peticion POST: solo admin
+// Para lo que viene ahora (POST), solo dejamos pasar al administrador
 if (!isset($_SESSION['rol']) || $_SESSION['rol'] != 1) {
     header('Content-Type: application/json');
-    echo json_encode(['success' => false, 'error' => 'No autorizado']);
+    echo json_encode(['success' => false, 'error' => 'No estás autorizado, pillín']);
     exit();
 }
 
+// Miramos qué quiere hacer el admin
 $accion = $_POST['accion'] ?? '';
 
 switch ($accion) {
     
-    // Nuevo coche
+    // Para meter un coche nuevo en el sistema
     case 'crear':
         $modelo = $_POST['modelo'];
         $precio = $_POST['precio'];
@@ -35,30 +37,36 @@ switch ($accion) {
         $kms    = $_POST['kms'];
         $motor  = $_POST['motor'];
 
-        // Comprobar imagen
+        // Si no han subido imagen, les damos un toque
         if (!isset($_FILES['imagen']) || $_FILES['imagen']['error'] !== UPLOAD_ERR_OK) {
-            echo "<script>alert('Error: debes seleccionar una imagen.'); history.back();</script>";
+            echo "<script>alert('Oye, que se te ha olvidado la foto.'); history.back();</script>";
             break;
         }
+        
+        // Comprobamos que sea una imagen de verdad y que no pese un quintal
         $tiposPermitidos = ['image/jpeg','image/png','image/webp','image/gif'];
         if (!in_array($_FILES['imagen']['type'], $tiposPermitidos)) {
-            echo "<script>alert('Formato no válido. Usa JPG, PNG o WebP.'); history.back();</script>";
+            echo "<script>alert('Ese formato no me vale. Usa JPG, PNG o WebP.'); history.back();</script>";
             break;
         }
         if ($_FILES['imagen']['size'] > 5 * 1024 * 1024) {
-            echo "<script>alert('La imagen supera los 5 MB.'); history.back();</script>";
+            echo "<script>alert('Esa foto es enorme, el máximo son 5 MB.'); history.back();</script>";
             break;
         }
+        
+        // Le ponemos un nombre único a la imagen para no machacar otras
         $ext    = pathinfo($_FILES['imagen']['name'], PATHINFO_EXTENSION);
         $nombre = uniqid('coche_', true) . '.' . $ext;
         $ruta   = dirname(__DIR__) . '/IMAGENES/coches/' . $nombre;
         $rutaWeb = '/proyecto_cochesCBO/IMAGENES/coches/' . $nombre;
 
+        // La movemos a la carpeta de imágenes
         if (!move_uploaded_file($_FILES['imagen']['tmp_name'], $ruta)) {
-            echo "<script>alert('Error al guardar la imagen en el servidor.'); history.back();</script>";
+            echo "<script>alert('Error raro al guardar la imagen.'); history.back();</script>";
             break;
         }
 
+        // Lo metemos todo en la base de datos
         $sql = "INSERT INTO coches (modelo, precio, anio, kms, motor, imagen, estado) VALUES (?, ?, ?, ?, ?, ?, 0)";
         $stmt = mysqli_prepare($conexion, $sql);
         if ($stmt) {
@@ -66,7 +74,7 @@ switch ($accion) {
             if (mysqli_stmt_execute($stmt)) {
                 $base = dirname($_SERVER['SCRIPT_NAME']);
                 echo "<script>
-                        alert('Vehículo registrado correctamente.');
+                        alert('Coche registrado de lujo.');
                         window.location.href = '" . dirname($base) . "/admin_panel.php';
                       </script>";
             } else {
@@ -76,7 +84,7 @@ switch ($accion) {
         }
         break;
 
-    // Editar coche
+    // Para cambiar los datos de un coche que ya existe
     case 'editar':
         $id     = intval($_POST['id']);
         $modelo = $_POST['modelo'];
@@ -85,7 +93,7 @@ switch ($accion) {
         $kms    = $_POST['kms'];
         $motor  = $_POST['motor'];
 
-        // Si hay nueva imagen la reemplazamos, si no se queda la actual
+        // Si suben una foto nueva, la cambiamos. Si no, dejamos la que estaba.
         if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
             $tiposPermitidos = ['image/jpeg','image/png','image/webp','image/gif'];
             if (in_array($_FILES['imagen']['type'], $tiposPermitidos) && $_FILES['imagen']['size'] <= 5*1024*1024) {
@@ -104,6 +112,7 @@ switch ($accion) {
             $imagen = $_POST['imagen_actual'];
         }
 
+        // Actualizamos los datos en la DB
         $sql = "UPDATE coches SET modelo=?, precio=?, anio=?, kms=?, motor=?, imagen=? WHERE id=?";
         $stmt = mysqli_prepare($conexion, $sql);
         if ($stmt) {
@@ -115,7 +124,7 @@ switch ($accion) {
         }
         break;
 
-    // Cambiar estado
+    // Para marcar un coche como vendido o volver a ponerlo en venta
     case 'estado':
         $id = intval($_POST['id']);
         $nuevo_estado = intval($_POST['estado']);
@@ -132,7 +141,7 @@ switch ($accion) {
         }
         break;
 
-    // Borrar coche
+    // Para borrar un coche definitivamente
     case 'borrar':
         $id = intval($_POST['id']);
 
@@ -149,9 +158,11 @@ switch ($accion) {
         break;
 
     default:
+        // Si nos mandan algo que no entendemos
         header('Content-Type: application/json');
-        echo json_encode(['success' => false, 'error' => 'Acción no válida']);
+        echo json_encode(['success' => false, 'error' => 'No sé qué me estás pidiendo']);
 }
 
+// Cerramos la conexión y listo
 mysqli_close($conexion);
 ?>

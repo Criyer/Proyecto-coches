@@ -1,11 +1,14 @@
 <?php
+// Arrancamos sesión para ver quién es este tío
 session_start();
+// Si no es admin (rol 1), lo echamos de aquí pitando al login
 if (!isset($_SESSION['rol']) || $_SESSION['rol'] != 1) {
     $base = dirname($_SERVER['SCRIPT_NAME']);
     header("Location: " . rtrim($base, '/') . "/HTML/login.html");
     exit();
 }
 
+// Pillamos la conexión y sacamos todos los coches, los últimos primero
 require 'PHP/db.php';
 $consulta = mysqli_query($conexion, "SELECT * FROM coches ORDER BY id DESC");
 ?>
@@ -221,6 +224,7 @@ $consulta = mysqli_query($conexion, "SELECT * FROM coches ORDER BY id DESC");
     </div>
 
     <script>
+        // Esta funcion es para que se vea la foto en cuanto la seleccionas
         function previewImg(input, targetId) {
             var img = document.getElementById(targetId);
             if (input.files && input.files[0]) {
@@ -230,6 +234,7 @@ $consulta = mysqli_query($conexion, "SELECT * FROM coches ORDER BY id DESC");
             }
         }
 
+        // Pillamos los datos del coche y los metemos en los inputs del modal para editarlos
         function abrirModal(coche) {
             document.getElementById('edit-id').value            = coche.id;
             document.getElementById('edit-imagen-actual').value = coche.imagen;
@@ -245,14 +250,17 @@ $consulta = mysqli_query($conexion, "SELECT * FROM coches ORDER BY id DESC");
             document.getElementById('modalOverlay').classList.add('activo');
         }
 
+        // Cerramos el modal de edicion
         function cerrarModal() {
             document.getElementById('modalOverlay').classList.remove('activo');
         }
 
+        // Si pinchan fuera del modal, tambien se cierra
         document.getElementById('modalOverlay').addEventListener('click', function(e) {
             if (e.target === this) cerrarModal();
         });
 
+        // Esta es la funcion gorda para guardar los cambios que hayamos hecho en un coche
         async function guardarEdicion() {
             var f = new FormData();
             f.append('accion',        'editar');
@@ -263,16 +271,21 @@ $consulta = mysqli_query($conexion, "SELECT * FROM coches ORDER BY id DESC");
             f.append('kms',           document.getElementById('edit-kms').value);
             f.append('motor',         document.getElementById('edit-motor').value);
             f.append('imagen_actual', document.getElementById('edit-imagen-actual').value);
+            
+            // Si han elegido una foto nueva, la incluimos
             var fileInput = document.getElementById('edit-imagen');
             if (fileInput.files.length > 0) {
                 f.append('imagen', fileInput.files[0]);
             }
+            
+            // Lo mandamos a la API y si va bien recargamos la pagina
             var r    = await fetch('PHP/api_gestion_coches.php', { method: 'POST', body: f });
             var data = await r.json();
             if (data.success) { cerrarModal(); location.reload(); }
-            else alert('Error al guardar los cambios.');
+            else alert('Vaya, algo ha fallado al guardar los cambios.');
         }
 
+        // Para cambiar de "En Venta" a "Vendido" y viceversa
         async function cambiarEstado(id, nuevoEstado) {
             var f = new FormData();
             f.append('accion', 'estado');
@@ -283,8 +296,9 @@ $consulta = mysqli_query($conexion, "SELECT * FROM coches ORDER BY id DESC");
             if (d.success) location.reload();
         }
 
+        // Para borrar un coche. Preguntamos antes no sea que le den sin querer.
         async function borrarCoche(id) {
-            if (!confirm('¿Eliminar este vehículo del sistema? Esta acción no se puede deshacer.')) return;
+            if (!confirm('¿Seguro que quieres borrar este coche? Luego no hay marcha atrás.')) return;
             var f = new FormData();
             f.append('accion', 'borrar');
             f.append('id', id);
